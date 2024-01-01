@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp URL Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            line-height: 1.6;
+            background-color: #e0f7fa; /* Adjust the color as needed */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            text-align: center;
+        }
+        .error {
+            color: red;
+        }
+        #whatsappURLContainer {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #whatsappLogoLink {
+            cursor: pointer;
+        }
+        #whatsappForm button {
+            margin-top: 10px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>WhatsApp URL Generator</h1>
+
+<form id="whatsappForm">
+    <label for="mobileNumber">Enter Mobile Number:</label>
+    <br>
+    <input type="text" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" required>
+    <br>
+    <span class="error" id="mobileNumberError"></span>
+
+    <br>
+
+    <button type="button" onclick="generateWhatsAppURL()">Submit</button>
+</form>
+
+<div id="whatsappURLContainer">
+    <h2>WhatsApp URL:</h2>
+    <p id="whatsappURL"></p>
+    <a id="whatsappLogoLink" target="_blank"><img src="images/wa.jpg" alt="WhatsApp Logo" width="50"></a>
+</div>
+
+<script>
+    function generateWhatsAppURL() {
+        // Get the mobile number from the input
+        const mobileNumberInput = document.getElementById('mobileNumber');
+        const mobileNumber = mobileNumberInput.value;
+
+        // Validate the mobile number
+        const mobileNumberError = document.getElementById('mobileNumberError');
+        if (!/^[0-9]{10}$/.test(mobileNumber)) {
+            mobileNumberError.textContent = 'Please enter a valid 10-digit mobile number.';
+            return;
+        } else {
+            mobileNumberError.textContent = '';
+        }
+
+        // Display the WhatsApp URL container
+        const whatsappURLContainerDiv = document.getElementById('whatsappURLContainer');
+        whatsappURLContainerDiv.style.display = 'block';
+
+        // Set the link for the logo
+        const whatsappLogoLink = document.getElementById('whatsappLogoLink');
+        whatsappLogoLink.href = `https://wa.me/+91${mobileNumber}`;
+    }
+</script>
+
+</body>
+</html>
