@@ -199,24 +199,79 @@
 </div>
 
 <script>
-    function generateWhatsAppURL() {
+     function generateWhatsAppURL() {
         const countryCode = document.getElementById('countryCode').value;
         const mobileNumberInput = document.getElementById('mobileNumber');
         const mobileNumber = mobileNumberInput.value;
 
+        // Mapping of country codes to their expected mobile number lengths
+        const mobileNumberLengths = {
+          "+1": 10,   // US/Canada
+          "+20": 10,  // Egypt
+          "+30": 10,  // Greece
+          "+31": 9,   // Netherlands
+          "+32": 9,   // Belgium
+          "+33": 9,   // France
+          "+34": 9,   // Spain
+          "+36": 9,   // Hungary
+          "+39": 10,  // Italy
+          "+40": 10,  // Romania
+          "+41": 9,   // Switzerland
+          "+43": 10,  // Austria
+          "+44": 10,  // UK
+         "+45": 8,   // Denmark
+         "+46": 9,   // Sweden
+         "+47": 8,   // Norway
+         "+48": 9,   // Poland
+         "+49": 10,  // Germany
+         "+51": 9,   // Peru
+         "+52": 10,  // Mexico
+         "+53": 8,   // Cuba
+         "+54": 10,  // Argentina
+         "+55": 11,  // Brazil
+         "+56": 9,   // Chile
+         "+57": 10,  // Colombia
+         "+58": 11,  // Venezuela
+         "+60": 10,  // Malaysia
+         "+61": 9,   // Australia
+         "+62": 11,  // Indonesia
+         "+63": 10,  // Philippines
+         "+64": 9,   // New Zealand
+         "+65": 8,   // Singapore
+         "+66": 9,   // Thailand
+         "+67": 7,   // Brunei
+         "+81": 10,  // Japan
+         "+82": 10,  // South Korea
+         "+84": 10,  // Vietnam
+         "+86": 11,  // China
+         "+90": 10,  // Turkey
+         "+91": 10,  // India
+         "+92": 10,  // Pakistan
+         "+93": 9,   // Afghanistan
+         "+94": 10,  // Sri Lanka
+         "+98": 10   // Iran
+        };
+
+
         const mobileNumberError = document.getElementById('mobileNumberError');
-        if (!/^[0-9]{10}$/.test(mobileNumber)) {
-            mobileNumberError.textContent = 'Please enter a valid 10-digit mobile number.';
+        const expectedLength = mobileNumberLengths[countryCode] || 10; // Default to 10 if no match
+
+        // Validate the mobile number length
+        if (mobileNumber.length !== expectedLength || !/^\d+$/.test(mobileNumber)) {
+            mobileNumberError.textContent = `Please enter a valid ${expectedLength}-digit mobile number.`;
             return;
         } else {
             mobileNumberError.textContent = '';
         }
 
+        // Show the WhatsApp URL container
         const whatsappURLContainerDiv = document.getElementById('whatsappURLContainer');
         whatsappURLContainerDiv.style.display = 'block';
 
+        // Generate WhatsApp URL
         const whatsappURL = `https://wa.me/${countryCode}${mobileNumber}`;
-        
+
+        // Set the link for the logo
         const whatsappLogoLink = document.getElementById('whatsappLogoLink');
         whatsappLogoLink.href = whatsappURL;
     }
