@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate WhatsApp URLs easily with this tool.">
+    <meta name="author" content="Your Name">
     <title>WhatsApp URL Generator</title>
     <style>
         body {
@@ -14,162 +16,209 @@
             height: 100vh;
             margin: 0;
             line-height: 1.6;
-            background-color: #e0f7fa; /* Adjust the color as needed */
+            background: linear-gradient(to right, #e0f7fa, #b2ebf2); /* Outer gradient */
+            overflow: hidden; /* Prevent scrollbars */
         }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #00796b; /* Darker shade of the background color */
-        }
-
-        form {
-            text-align: center;
-            background: white;
+        .container {
+            background-color: white; /* Center background color */
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
         }
-
+        h1 {
+            margin-bottom: 20px;
+            color: #00796b; /* Darker blue color for the header */
+        }
         label {
+            display: block;
+            margin-bottom: 10px;
             font-weight: bold;
         }
-
-        select, input[type="text"] {
-            width: 100%;
-            max-width: 300px;
-            padding: 10px;
-            border: 1px solid #00796b;
-            border-radius: 4px;
-            margin-top: 5px;
+        .input-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
         }
-
+        select {
+            padding: 10px;
+            border: 2px solid #00796b;
+            border-radius: 5px 0 0 5px;
+            width: 120px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+        input {
+            padding: 10px;
+            border: 2px solid #00796b;
+            border-radius: 0 5px 5px 0;
+            width: calc(100% - 120px); /* Adjust width to fit within container */
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
         button {
-            background-color: #00796b;
+            background-color: #00796b; /* Button color matching header */
             color: white;
             border: none;
             padding: 10px 20px;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 1em;
-            margin-top: 10px;
+            font-size: 16px;
         }
-
         button:hover {
-            background-color: #004d40;
+            background-color: #004d40; /* Darker shade on hover */
         }
-
         .error {
             color: red;
-            margin-top: 5px;
-            display: block;
+            font-size: 14px;
         }
-
         #whatsappURLContainer {
             display: none;
             text-align: center;
             margin-top: 20px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-
-        #whatsappURL {
-            word-break: break-word;
-            margin-bottom: 10px;
-        }
-
         #whatsappLogoLink {
-            display: inline-block;
+            cursor: pointer;
         }
-
         #whatsappLogoLink img {
-            border-radius: 4px;
+            max-width: 100%;
+            height: auto;
         }
 
         /* Responsive Styles */
         @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-
-            h1 {
-                font-size: 1.5em;
-            }
-
-            form {
-                width: 100%;
+            .container {
                 padding: 15px;
             }
-
-            select, input[type="text"] {
-                max-width: 100%;
+            select {
+                width: 100px;
+                font-size: 14px;
             }
-
-            button {
-                width: 100%;
-                font-size: 1.2em;
+            input {
+                font-size: 14px;
+                width: calc(100% - 100px); /* Adjust width for smaller screens */
             }
         }
     </style>
 </head>
 <body>
 
-<h1>WhatsApp URL Generator</h1>
+<div class="container">
+    <h1>WhatsApp URL Generator</h1>
 
-<form id="whatsappForm">
-    <label for="countryCode">Select Country Code:</label>
-    <br>
-    <select id="countryCode" name="countryCode" required>
-        <option value="+1">+1 (USA/Canada)</option>
-        <option value="+91">+91 (India)</option>
-        <option value="+44">+44 (UK)</option>
-        <!-- Add more country codes as needed -->
-    </select>
-    <br>
+    <form id="whatsappForm">
+        <label for="mobileNumber">Enter Mobile Number:</label>
+        <div class="input-container">
+            <select id="countryCode" name="countryCode">
+                <option value="+91" selected>+91 (India)</option>
+                <!-- Add more country codes here -->
+                <option value="+1">+1 (USA)</option>
+                <option value="+44">+44 (UK)</option>
+                <option value="+1">+1 (US/Canada)</option>
+                <option value="+20">+20 (Egypt)</option>
+                <option value="+30">+30 (Greece)</option>
+                <option value="+31">+31 (Netherlands)</option>
+                <option value="+32">+32 (Belgium)</option>
+                <option value="+33">+33 (France)</option>
+                <option value="+34">+34 (Spain)</option>
+                <option value="+36">+36 (Hungary)</option>
+                <option value="+39">+39 (Italy)</option>
+                <option value="+40">+40 (Romania)</option>
+                <option value="+41">+41 (Switzerland)</option>
+                <option value="+43">+43 (Austria)</option>
+                <option value="+44">+44 (UK)</option>
+                <option value="+45">+45 (Denmark)</option>
+                <option value="+46">+46 (Sweden)</option>
+                <option value="+47">+47 (Norway)</option>
+                <option value="+48">+48 (Poland)</option>
+                <option value="+49">+49 (Germany)</option>
+                <option value="+50">+50 (Reserved)</option>
+                <option value="+51">+51 (Peru)</option>
+                <option value="+52">+52 (Mexico)</option>
+                <option value="+53">+53 (Cuba)</option>
+                <option value="+54">+54 (Argentina)</option>
+                <option value="+55">+55 (Brazil)</option>
+                <option value="+56">+56 (Chile)</option>
+                <option value="+57">+57 (Colombia)</option>
+                <option value="+58">+58 (Venezuela)</option>
+                <option value="+60">+60 (Malaysia)</option>
+                <option value="+61">+61 (Australia)</option>
+                <option value="+62">+62 (Indonesia)</option>
+                <option value="+63">+63 (Philippines)</option>
+                <option value="+64">+64 (New Zealand)</option>
+                <option value="+65">+65 (Singapore)</option>
+                <option value="+66">+66 (Thailand)</option>
+                <option value="+67">+67 (Brunei)</option>
+                <option value="+68">+68 (Suriname)</option>
+                <option value="+69">+69 (Reserved)</option>
+                <option value="+70">+70 (Norway)</option>
+                <option value="+71">+71 (Puerto Rico)</option>
+                <option value="+72">+72 (Reserved)</option>
+                <option value="+73">+73 (Reserved)</option>
+                <option value="+74">+74 (Reserved)</option>
+                <option value="+75">+75 (Reserved)</option>
+                <option value="+76">+76 (Reserved)</option>
+                <option value="+77">+77 (Reserved)</option>
+                <option value="+78">+78 (Reserved)</option>
+                <option value="+79">+79 (Reserved)</option>
+                <option value="+80">+80 (Reserved)</option>
+                <option value="+81">+81 (Japan)</option>
+                <option value="+82">+82 (South Korea)</option>
+                <option value="+83">+83 (Reserved)</option>
+                <option value="+84">+84 (Vietnam)</option>
+                <option value="+85">+85 (Reserved)</option>
+                <option value="+86">+86 (China)</option>
+                <option value="+87">+87 (Reserved)</option>
+                <option value="+88">+88 (Reserved)</option>
+                <option value="+89">+89 (Reserved)</option>
+                <option value="+90">+90 (Turkey)</option>
+                <option value="+92">+92 (Pakistan)</option>
+                <option value="+93">+93 (Afghanistan)</option>
+                <option value="+94">+94 (Sri Lanka)</option>
+                <option value="+95">+95 (Reserved)</option>
+                <option value="+96">+96 (Reserved)</option>
+                <option value="+97">+97 (Reserved)</option>
+                <option value="+98">+98 (Iran)</option>
+                <option value="+99">+99 (Reserved)</option>
+            </select>
+            <input type="text" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" required aria-describedby="mobileNumberError">
+        </div>
+        <span class="error" id="mobileNumberError"></span>
+        <button type="button" onclick="generateWhatsAppURL()">Submit</button>
+    </form>
 
-    <label for="mobileNumber">Enter Mobile Number:</label>
-    <br>
-    <input type="text" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10,15}" required>
-    <br>
-    <span class="error" id="mobileNumberError"></span>
-
-    <br>
-
-    <button type="button" onclick="generateWhatsAppURL()">Submit</button>
-</form>
-
-<div id="whatsappURLContainer">
-    <h2>WhatsApp URL:</h2>
-    <p id="whatsappURL"></p>
-    <a id="whatsappLogoLink" target="_blank"><img src="images/wa.jpg" alt="WhatsApp Logo" width="50"></a>
+    <div id="whatsappURLContainer">
+        <h2>Click below to open WhatsApp:</h2>
+        <a id="whatsappLogoLink" target="_blank" aria-label="WhatsApp Logo"><img src="images/wa.jpg" alt="WhatsApp Logo" width="50"></a>
+    </div>
 </div>
 
 <script>
     function generateWhatsAppURL() {
-        // Get the country code and mobile number from the input
         const countryCode = document.getElementById('countryCode').value;
         const mobileNumberInput = document.getElementById('mobileNumber');
         const mobileNumber = mobileNumberInput.value;
 
-        // Validate the mobile number
         const mobileNumberError = document.getElementById('mobileNumberError');
-        if (!/^[0-9]{10,15}$/.test(mobileNumber)) {
-            mobileNumberError.textContent = 'Please enter a valid mobile number (10 to 15 digits).';
+        if (!/^[0-9]{10}$/.test(mobileNumber)) {
+            mobileNumberError.textContent = 'Please enter a valid 10-digit mobile number.';
             return;
         } else {
             mobileNumberError.textContent = '';
         }
 
-        // Display the WhatsApp URL container
         const whatsappURLContainerDiv = document.getElementById('whatsappURLContainer');
         whatsappURLContainerDiv.style.display = 'block';
 
-        // Set the link for the logo
         const whatsappURL = `https://wa.me/${countryCode}${mobileNumber}`;
-        document.getElementById('whatsappURL').textContent = 'Click below to open WhatsApp chat';
-        document.getElementById('whatsappLogoLink').href = whatsappURL;
+        
+        const whatsappLogoLink = document.getElementById('whatsappLogoLink');
+        whatsappLogoLink.href = whatsappURL;
     }
 </script>
 
